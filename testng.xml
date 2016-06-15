@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1" verbose="2">
+
+    <parameter name="Browser" value="chrome"></parameter>
+    <parameter name="ErrorImgFilePath" value="error_img"></parameter>
+    <parameter name="LogFilePath" value="logs"></parameter>
+    <parameter name="ConfigFilePath" value="conf"></parameter>
+    <parameter name="TestDataFilePath" value="testdata"></parameter>
+    <test name="test1">
+        
+        <classes>
+            <class name="testHome"></class>
+        </classes>
+    </test>
+</suite>

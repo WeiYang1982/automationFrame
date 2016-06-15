@@ -1,0 +1,14 @@
+[INFO][testTemplate.java][2016-02-04 17:28:50]========================================
+[INFO][testTemplate.java][2016-02-04 17:28:50]TestCase: testHome
+[INFO][testTemplate.java][2016-02-04 17:28:50]========================================
+[ERROR][testTemplate.java][2016-02-04 17:28:50]========================================
+[ERROR][testTemplate.java][2016-02-04 17:28:50]TestCase: testHome
+[ERROR][testTemplate.java][2016-02-04 17:28:50]========================================
+[INFO][EventListener.java][2016-02-04 17:28:52]WebDriver navigating to: 'http://tplatform.xbniao.com/'
+[INFO][EventListener.java][2016-02-04 17:28:55]WebDriver clicking on: 'class name: buttonSign'
+[INFO][EventListener.java][2016-02-04 17:28:56]WebDriver changing value in element found: By.id: username from '' to ''
+[INFO][EventListener.java][2016-02-04 17:28:56]WebDriver changing value in element found: By.id: username from '' to '15624965577'
+[INFO][EventListener.java][2016-02-04 17:28:56]WebDriver changing value in element found: By.id: password from '' to ''
+[INFO][EventListener.java][2016-02-04 17:28:56]WebDriver changing value in element found: By.id: password from '' to '111111'
+[INFO][EventListener.java][2016-02-04 17:28:56]WebDriver clicking on: 'id: goSubmit'
+[INFO][EventListener.java][2016-02-04 17:28:59]WebDriver clicking on: 'link text: 图片管理'
