@@ -8,7 +8,9 @@
     <artifactId>XBN</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>   </properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <checkstyle.config.location>config/maven_checks.xml</checkstyle.config.location>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -45,6 +47,13 @@
             <version>6.9.10</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/checkstyle/checkstyle -->
+        <dependency>
+            <groupId>checkstyle</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>5.0</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -61,6 +70,12 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.9.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
@@ -70,16 +85,16 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.5.2</version>
-                <configuration>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <xmlOutput>true</xmlOutput>
-                    <findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>findbugs-maven-plugin</artifactId>-->
+                <!--<version>2.5.2</version>-->
+                <!--<configuration>-->
+                    <!--<findbugsXmlOutput>true</findbugsXmlOutput>-->
+                    <!--<xmlOutput>true</xmlOutput>-->
+                    <!--<findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
         </plugins>
     </build>
