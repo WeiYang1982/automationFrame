@@ -24,7 +24,6 @@ public class login {
         page.passWord.clear();
         page.passWord.sendKeys(passWord);
         page.login.click();
-
         try {
             wait.until(ExpectedConditions.titleContains("首页"));
             if (page.logoIsExist()){
