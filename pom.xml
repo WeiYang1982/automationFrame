@@ -52,9 +52,7 @@
             <artifactId>checkstyle</artifactId>
             <version>5.0</version>
         </dependency>
-
     </dependencies>
-
 
     <build>
         <plugins>
