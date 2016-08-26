@@ -10,7 +10,7 @@
     <test name="test1">
         
         <classes>
-            <class name="testHome"></class>
+            <class name="testLogin"></class>
         </classes>
     </test>
 </suite>
