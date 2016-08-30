@@ -8,14 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by A on 2016/2/4.
  */
-public class pageHome {
+public class PageHome {
     WebDriver driver;
 
-    public pageHome(WebDriver driver){
+    public PageHome( WebDriver driver ){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(linkText = "图片管理")
+    @FindBy( linkText = "图片管理" )
     public WebElement picConfig;
 }

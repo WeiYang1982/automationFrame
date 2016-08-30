@@ -2,15 +2,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite1" verbose="2">
 
-    <parameter name="Browser" value="chrome"></parameter>
-    <parameter name="ErrorImgFilePath" value="error_img"></parameter>
-    <parameter name="LogFilePath" value="logs"></parameter>
-    <parameter name="ConfigFilePath" value="conf"></parameter>
-    <parameter name="TestDataFilePath" value="testdata"></parameter>
-    <test name="test1">
-        
+    <test name="login" preserve-order="true">
         <classes>
             <class name="testLogin"></class>
         </classes>
     </test>
+    <test name="home" preserve-order="true">
+        <classes>
+            <class name="testHome"></class>
+        </classes>
+    </test>
+
+    <!--<groups>-->
+        <!--<define name="xbniao"></define>-->
+    <!--</groups>-->
 </suite>
