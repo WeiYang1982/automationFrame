@@ -92,6 +92,7 @@
                         <LogFilePath>logs</LogFilePath>
                         <ConfigFilePath>conf</ConfigFilePath>
                         <TestDataFilePath>testdata</TestDataFilePath>
+                        <Browser>${browerType}</Browser>
                     </systemProperties>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>

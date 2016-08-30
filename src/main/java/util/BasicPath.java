@@ -30,6 +30,7 @@ public class BasicPath {
 
     public void setFilePath(String errorImgFilePath,String logFilePath,String configFilePath,String testDataFilePath) {
         System.out.println(System.getProperty("user.dir") + File.separator + "error_img");
+        System.out.println(System.getProperty("Browser"));
         ErrorImgFilePath = errorImgFilePath;
         LogFilePath =logFilePath;
         ConfigFilePath = configFilePath;
