@@ -18,7 +18,6 @@
             </properties>
         </profile>
     </profiles>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <checkstyle.config.location>config/maven_checks.xml</checkstyle.config.location>
