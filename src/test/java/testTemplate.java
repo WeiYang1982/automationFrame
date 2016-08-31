@@ -25,7 +25,7 @@ public class testTemplate {
     @BeforeSuite(alwaysRun = true)
     protected void setup(String errorImgFilePath,String logFilePath,String configFilePath,String testDataFilePath){
         loadPathAndParameters(errorImgFilePath, logFilePath, configFilePath, testDataFilePath);
-        new CleanWorkspace(errorImgFilePath, logFilePath);
+//        new CleanWorkspace(errorImgFilePath, logFilePath);
         setLogger(configFilePath);
         setTestCaseName(this.getClass().getSimpleName());
     }
