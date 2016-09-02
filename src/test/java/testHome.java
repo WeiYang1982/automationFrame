@@ -12,7 +12,7 @@ public class testHome extends testTemplate{
 
     @Test(groups = "home")
     public void testHome(){
-        String path = ".\\testdata\\login.xls";
+        String path = TestDataPath + "\\login.xls";
         String[][] result = ExcelReader.getSingleExpectationData(path,"success");
         login login = new login();
         login.login(webDriver,result[0][0],result[0][1],result[0][2]);

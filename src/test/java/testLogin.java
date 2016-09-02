@@ -12,8 +12,9 @@ public class testLogin extends testTemplate {
 
     @DataProvider(name = "test")
     public Object[][] provider(){
-        String path = ".\\testdata\\login.xls";
+        String path = TestDataPath + "\\login.xls";
         Object[][] result = (Object[][]) ExcelReader.getSingleExpectationData(path,"success");
+        System.out.println(result);
         return result;
     }
 
