@@ -17,6 +17,7 @@ public class LogWriter {
     public void writeFileAndReport(String message){
         reporter.log(message);
         log.error(message);
+//        log.info(message);
     }
 
     public Logger setLoggerWriter(String LogConfigFilePath){
