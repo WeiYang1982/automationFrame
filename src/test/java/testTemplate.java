@@ -25,12 +25,9 @@ public class testTemplate {
     @BeforeSuite(alwaysRun = true)
     protected void setup(String errorImgFilePath,String logFilePath,String configFilePath,String testDataFilePath){
         loadPathAndParameters(errorImgFilePath, logFilePath, configFilePath, testDataFilePath);
-//        new CleanWorkspace(errorImgFilePath, logFilePath);
         setLogger(configFilePath);
         setTestCaseName(this.getClass().getSimpleName());
     }
-
-
 
     @BeforeMethod(alwaysRun = true)
     protected void startDriver(){
@@ -88,13 +85,7 @@ public class testTemplate {
      */
     private void setTestCaseName(String testCaseName) {
         TestCaseName = testCaseName;
-        logger.info("========================================");
-        logger.info("TestCase: " + TestCaseName);
-        logger.info("========================================");
-
-        logger.error("========================================");
-        logger.error("TestCase: " + TestCaseName);
-        logger.error("========================================");
+        writer.writeFileAndReport("==================TestCaseName:" + TestCaseName + "====================\n");
     }
 
 
