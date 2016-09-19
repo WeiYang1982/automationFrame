@@ -12,7 +12,10 @@
             <class name="testHome"></class>
         </classes>
     </test>
-
+    <parameter name="ErrorImgFilePath" value=".\target\error_img"></parameter>
+    <parameter name="LogFilePath" value=".\target\logs"></parameter>
+    <parameter name="ConfigFilePath" value="conf"></parameter>
+    <parameter name="TestDataFilePath" value="testdata"></parameter>
     <!--<groups>-->
         <!--<define name="xbniao"></define>-->
     <!--</groups>-->

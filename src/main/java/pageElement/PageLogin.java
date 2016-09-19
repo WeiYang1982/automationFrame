@@ -1,34 +1,49 @@
 package pageElement;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import util.WaitForElement;
 
 /**
- * Created by A on 2016/1/28.
+ * Created by A on 2016/9/9.
  */
-public class pageLogin {
+public class PageLogin extends LoadableComponent<PageLogin>{
     WebDriver driver;
+    String URL;
 
-    public pageLogin(WebDriver driver){
-        this.driver = driver;
+    public PageLogin(WebDriver driver, String URL){
+        this.driver=driver;
+        this.URL = URL;
         PageFactory.initElements(driver,this);
+        driver.get(URL);
     }
 
-    @FindBy(className = "buttonSign")
-    public WebElement signButton;
+    @FindBy (className = "buttonSign")
+    public WebElement buttonSign;
 
-    @FindBy(id = "username")
+    @FindBy (id = "username")
     public WebElement userName;
 
-    @FindBy(id = "password")
-    public WebElement passWord;
+    public void setUsername(String username){
+        try {
+            WaitForElement.waitForElement(driver,By.id("username")).sendKeys(username);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
 
-    @FindBy(id = "goSubmit")
-    public WebElement login;
+    @FindBy (id = "password")
+    public WebElement password;
+
+    @FindBy (id = "goSubmit")
+    public WebElement loginButton;
 
     @FindBy(className = "xbnLogo")
     private WebElement logo;
@@ -50,7 +65,6 @@ public class pageLogin {
             e.printStackTrace();
             return e.toString();
         }
-
     }
 
     public boolean logoIsExist() {
@@ -69,5 +83,22 @@ public class pageLogin {
         }
     }
 
-}
+    @Override
+    public void load(){
+        driver.navigate().refresh();
+    }
 
+    @Override
+    public void isLoaded(){
+        WebDriverWait Wait = new WebDriverWait(driver, 10);
+        Wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript(
+                        "return document.readyState"
+                ).equals("complete");
+            }
+        });
+    }
+
+
+}

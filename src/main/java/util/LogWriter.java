@@ -20,9 +20,10 @@ public class LogWriter {
 //        log.info(message);
     }
 
-    public Logger setLoggerWriter(String LogConfigFilePath){
+    public Logger setLoggerWriter(){
+        String configPath = System.getProperty("user.dir") + File.separator + "config";
         try {
-            CaseFileName = Thread.currentThread().getStackTrace()[6].getFileName();
+            CaseFileName = Thread.currentThread().getStackTrace()[1].getFileName();
         }catch (Throwable throwable){
             if (throwable.getClass().equals(ArrayIndexOutOfBoundsException.class)){
                 CaseFileName = Thread.currentThread().getStackTrace()[1].getFileName();
@@ -30,11 +31,11 @@ public class LogWriter {
         }
         log = Logger.getLogger(CaseFileName) ;
         try{
-            File file = new File(LogConfigFilePath);
+            File file = new File(configPath);
             if(file ==null && !file.exists()){
                 file.mkdirs();
             }
-            PropertyConfigurator.configure(LogConfigFilePath + File.separator + "log4j.properties");
+            PropertyConfigurator.configure(configPath + File.separator + "log4j.properties");
             return log;
         }  catch (Exception e){
             e.printStackTrace();

@@ -31,23 +31,13 @@ import java.util.concurrent.TimeoutException;
  ����*
     */
 public class EventListener extends AbstractWebDriverEventListener {
-    private String caseName;
     private By lastFindBy;
     private String originalValue;
-    String ErrorImgFilePath;
     Logger log;
     LogWriter logWriter;
 
-    public void setCaseName(String caseName) {
-        this.caseName = caseName;
-    }
-
     public void setLog(Logger log) {
         this.log = log;
-    }
-
-    public void setErrorImgFilePath(String errorImgFilePath) {
-        ErrorImgFilePath = errorImgFilePath;
     }
 
     public void setLogWriter(LogWriter logWriter) {
@@ -92,6 +82,8 @@ public class EventListener extends AbstractWebDriverEventListener {
      * @return
      */
     private String generateRandomFilename(Throwable ex) {
+        String caseName = System.getProperty("TestCaseName");
+        String ErrorImgFilePath = System.getProperty("user.dir") + File.separator + "target" + File.separator + "error_img";
         String sp = File.separator;
         SimpleDateFormat formatter = new SimpleDateFormat(
                 "yyyy-MM-dd-hh-mm-ss");
@@ -99,7 +91,7 @@ public class EventListener extends AbstractWebDriverEventListener {
         String filename = ex.getMessage();
         int i = filename.indexOf('\n');
         System.out.println("File~caseName :" + caseName);
-        filename = filename.substring(0, i).replaceAll("\\s", "_")
+        filename = filename.substring(0, i).replaceAll("\\s", "_").replaceAll("\"","@")
                 .replaceAll(":", "") ;
         filename = ErrorImgFilePath + "" + sp +  caseName + "" + sp + "" + caseName + "@@" + dateString + "@@" + filename + ".png";
         System.out.println("filename : " + filename);
@@ -157,6 +149,8 @@ public class EventListener extends AbstractWebDriverEventListener {
     }
     public void afterNavigateBack(WebDriver selenium){}
     public void afterNavigateForward(WebDriver selenium){}
+    public void beforeNavigateRefresh(WebDriver webDriver) {}
+    public void afterNavigateRefresh(WebDriver webDriver) {}
     public void afterNavigateTo(String url, WebDriver selenium){}
     public void afterScript(String script, WebDriver selenium){}
     }

@@ -1,11 +1,9 @@
 package util;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxBinary;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
@@ -14,9 +12,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 /**
@@ -26,22 +24,48 @@ import java.util.logging.Level;
  * Time: ����9:40
  * To change this template use File | Settings | File Templates.
  */
-public class StartDriver {
-    public EventListener eventListener;
-    String selenium_grid_url;
-    public WebDriver webDriver;
+public class StartDriver extends EventFiringWebDriver{
+    static String selenium_grid_url;
+    public static LogWriter writer;
+    public static Logger log;
+    public static WebDriver webDriver = null;
+    public static final Thread CLOSE_THREAD = new Thread() {
+        @Override
+        public void run() {
+            webDriver.close();
+        }
+    };
 
-    public void setEventListener(EventListener eventListener) {
-        this.eventListener = eventListener;
+    static {
+        writer = new LogWriter();
+        log = writer.setLoggerWriter();
+        Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
+        ConfigManager config = new ConfigManager();
+        String Host = config.get("host");
+        String BrowserType = config.get("browser");
+        startRemoteWebDriver(Host,BrowserType);
+
     }
 
-    /**
-     * 启动远程浏览器
-     * @param Host 远程机器IP
-     * @param BrowserType 浏览器类型
-     * @return
-     */
-    public WebDriver setup(String Host,String BrowserType) {
+    public StartDriver() {
+        super(webDriver);
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    }
+
+    @Override
+    public void close() {
+        System.out.println(Thread.currentThread());
+        if (Thread.currentThread() != CLOSE_THREAD) {
+            throw new UnsupportedOperationException("You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
+        }
+        super.close();
+        super.quit();
+    }
+
+
+
+    private static WebDriver startRemoteWebDriver(String Host,String BrowserType) {
         selenium_grid_url = "http://" + Host + ":4444/wd/hub";
         DesiredCapabilities desiredCapabilities = null;
         if (BrowserType.contains("chrome")){
@@ -53,6 +77,9 @@ public class StartDriver {
         }else {
             System.out.println("没有找到对应浏览器类型");
         }
+        EventListener eventListener = new EventListener();
+        eventListener.setLog(log);
+        eventListener.setLogWriter(writer);
         try {
             webDriver = new RemoteWebDriver(new URL(selenium_grid_url),desiredCapabilities);
             webDriver = new EventFiringWebDriver(webDriver).register(eventListener);
@@ -60,13 +87,15 @@ public class StartDriver {
             e.printStackTrace();
         }
         return webDriver;
+
     }
 
-    /**
+
+ /*   *//**
      * 启动单机浏览器
      * @param type 浏览器类型
      * @return
-     */
+     *//*
     public WebDriver SetupSingelDriver(String type,String ChromePath,String FirefoxBinary){
         if (type.contains("chrome")){
             webDriver = SingelChromeDriver(ChromePath);
@@ -78,13 +107,13 @@ public class StartDriver {
             System.out.println("没有找到对应浏览器类型");
         }
         return webDriver;
-    }
+    }*/
 
     /**
      * 配置远程chrome浏览器设置
      * @return
      */
-    private DesiredCapabilities ChromeDes(){
+    private static DesiredCapabilities ChromeDes(){
         try {
             ChromeOptions options = new ChromeOptions();
             LoggingPreferences loggingPreferences = new LoggingPreferences();
@@ -108,7 +137,7 @@ public class StartDriver {
      * 配置远程IE浏览器设置
      * @return
      */
-    private DesiredCapabilities IEDes(){
+    private static DesiredCapabilities IEDes(){
         try {
             DesiredCapabilities desiredCapabilities = DesiredCapabilities.internetExplorer();
             desiredCapabilities.setBrowserName("internet Explorer");
@@ -127,7 +156,7 @@ public class StartDriver {
      * 配置远程firefox浏览器设置
      * @return
      */
-    private DesiredCapabilities FirefoxDes(){
+    private static DesiredCapabilities FirefoxDes(){
         try {
             DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
             desiredCapabilities.setBrowserName("firefox");
@@ -141,7 +170,7 @@ public class StartDriver {
     /**
      * 打开单机chrome浏览器
      * @return
-     */
+     *//*
     private WebDriver SingelChromeDriver(String path){
         System.setProperty("webdriver.chrome.driver", path);
         DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
@@ -160,10 +189,10 @@ public class StartDriver {
         return webDriver;
     }
 
-    /**
+    *//**
      * 打开单机ie浏览器
      * @return
-     */
+     *//*
     private WebDriver SingelIEDriver(){
         try {
             System.setProperty("webdriver.ie.driver", "lib\\IEDriverServer.exe");
@@ -181,10 +210,10 @@ public class StartDriver {
         return null;
     }
 
-    /**
+    *//**
      * 打开单机firefox浏览器
      * @return
-     */
+     *//*
     private WebDriver SingelFirefoxDriver(String FirefoxBinary){
         try {
             DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
@@ -200,7 +229,7 @@ public class StartDriver {
         return null;
     }
 
-
+*/
 
 }
 

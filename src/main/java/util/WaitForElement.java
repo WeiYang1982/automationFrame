@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by A on 2016/2/2.
  */
-public class waitForElement {
+public class WaitForElement {
 
 
     public static WebElement waitForElement(WebDriver driver, final By by) throws Throwable{
@@ -21,22 +21,20 @@ public class waitForElement {
         System.out.println("======In this page to find the element " + by.toString() +"======");
 
         wait.until((new ExpectedCondition<Boolean>() {
-//            @Override
             public Boolean apply(WebDriver driverObject) {
                 return (Boolean) ((JavascriptExecutor) driverObject).executeScript("return document.readyState === 'complete'");
             }
         }));
 
         wait.until((new ExpectedCondition<Boolean>() {
-//            @Override
             public Boolean apply(WebDriver driverObject) {
                 System.out.println("Waiting times\n ");
                 return wait.until(ExpectedConditions.visibilityOf(driverObject.findElement(by))).isDisplayed();
             }
         }));
 
-        String pageurl = driver.getCurrentUrl();
-        System.out.println("This page url is:"+pageurl);
+        String pageURL = driver.getCurrentUrl();
+        System.out.println("This page url is:"+pageURL);
         WebElement element = driver.findElement(by);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); //reset implicitlyWait
