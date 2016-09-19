@@ -30,7 +30,7 @@ public class LoginFaceImp implements LoginFace {
     }
 
     public void login() {
-        pageLogin.loginButton.click();
+        pageLogin.goSubmit.click();
     }
 
     public void loginWithCookie(){

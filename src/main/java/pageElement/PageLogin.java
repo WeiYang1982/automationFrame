@@ -39,11 +39,9 @@ public class PageLogin extends LoadableComponent<PageLogin>{
         }
     }
 
-    @FindBy (id = "password")
     public WebElement password;
 
-    @FindBy (id = "goSubmit")
-    public WebElement loginButton;
+    public WebElement goSubmit;
 
     @FindBy(className = "xbnLogo")
     private WebElement logo;
