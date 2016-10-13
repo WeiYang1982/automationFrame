@@ -1,8 +1,13 @@
 package procedure;
 
+import org.apache.poi.ss.formula.functions.T;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import pageElement.PageHome;
 import pageElement.PageLogin;
+import util.WaitForElement;
 
 /**
  * Created by A on 2016/9/18.
@@ -15,8 +20,7 @@ public class LoginFaceImp implements LoginFace {
     public LoginFaceImp(WebDriver driver,String URL){
         this.driver = driver;
         this.URL = URL;
-        pageLogin = new PageLogin(driver, URL);
-        pageLogin.get();
+        pageLogin = new PageLogin(driver, URL).get();
     }
 
     public void setUserName(String username){
@@ -31,6 +35,7 @@ public class LoginFaceImp implements LoginFace {
 
     public void login() {
         pageLogin.goSubmit.click();
+        pageLogin.goToHomePage();
     }
 
     public void loginWithCookie(){

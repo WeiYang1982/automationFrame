@@ -1,5 +1,7 @@
 package procedure;
 
+import org.openqa.selenium.support.ui.LoadableComponent;
+
 /**
  * Created by A on 2016/9/18.
  */

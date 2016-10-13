@@ -81,6 +81,12 @@ public class PageLogin extends LoadableComponent<PageLogin>{
         }
     }
 
+    public LoadableComponent<?> goToHomePage(){
+        PageHome home = new PageHome(driver);
+        home.get();
+        return home;
+    }
+
     @Override
     public void load(){
         driver.navigate().refresh();
