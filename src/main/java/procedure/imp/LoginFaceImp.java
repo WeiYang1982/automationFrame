@@ -1,9 +1,9 @@
-package procedureFace.imp;
+package procedure.imp;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import pageElement.PageLogin;
-import procedureFace.face.LoginFace;
+import procedure.face.LoginFace;
 
 /**
  * Created by A on 2016/9/18.

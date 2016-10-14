@@ -1,6 +1,6 @@
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import procedureFace.imp.LoginFaceImp;
+import procedure.imp.LoginFaceImp;
 import util.ExcelReader;
 
 import java.io.File;
