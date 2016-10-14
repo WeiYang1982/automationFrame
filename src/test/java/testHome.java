@@ -1,6 +1,6 @@
 import org.testng.annotations.Test;
-import procedureFaceImp.HomeFaceImp;
-import procedureFaceImp.LoginFaceImp;
+import procedureFace.imp.HomeFaceImp;
+import procedureFace.imp.LoginFaceImp;
 
 /**
  * Created by A on 2016/9/20.

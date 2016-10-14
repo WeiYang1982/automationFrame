@@ -1,9 +1,9 @@
-package procedureFaceImp;
+package procedureFace.imp;
 
 
 import org.openqa.selenium.WebDriver;
 import pageElement.PageHome;
-import procedureFace.HomeFace;
+import procedureFace.face.HomeFace;
 
 /**
  * Created by A on 2016/9/20.
