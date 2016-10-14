@@ -1,13 +1,9 @@
-package procedure;
+package procedureFaceImp;
 
-import org.apache.poi.ss.formula.functions.T;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.LoadableComponent;
-import pageElement.PageHome;
 import pageElement.PageLogin;
-import util.WaitForElement;
+import procedureFace.LoginFace;
 
 /**
  * Created by A on 2016/9/18.
